@@ -1,0 +1,39 @@
+<md-sidenav-container class="example-container">
+  <md-sidenav color="primary" #sidenav  mode="side" class="app-sidenav component-viewer-sidenav">
+    
+    <nav>
+    <ul>     
+          <li>
+            <a routerlinkactive="component-viewer-sidenav-item-selected" [routerLink]="['user']">Auctioneer</a>
+          </li>      
+          <li>
+            <a  routerlinkactive="component-viewer-sidenav-item-selected" [routerLink]="['user']">Bidder</a>        
+      </ul>
+   
+  </nav>
+
+  
+  </md-sidenav>
+<md-toolbar color="primary">
+
+    <!-- Not needed here -->
+    
+    <button class="app-icon-button" >
+      <i class="material-icons app-toolbar-menu"  *ngIf="(isLoggedin$ | async)" (click)="sidenav.toggle()">menu</i>
+    </button>
+    
+    Real-time Parking Booking System
+
+    <span class="app-toolbar-filler"></span>
+      
+    <button *ngIf="!(isLoggedin$ | async)" md-raised-button md-button [routerLink]="['signin']" color="accent" class="app-button">SignIn</button>
+    <button *ngIf="!(isLoggedin$ | async)" md-raised-button [routerLink]="['signup']" color="accent" class="app-button">Signup</button>
+
+    <button *ngIf="(isLoggedin$ | async)" md-raised-button color="accent" (click)="sidenav.close();logout()" class="app-button">Logout</button>
+    
+</md-toolbar>
+
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>
+</md-sidenav-container>
