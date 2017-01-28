@@ -1,9 +1,25 @@
-//import { UserListComponent } from './user-list/user-list.component';
+import { AuctioneerComponent } from './auctioneer/auctioneer.component';
+import { BidderComponent } from './bidder/bidder.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { UserMainComponent } from './user-main/user-main.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+
 
 export const Components: any[] = [
-//    UserListComponent
+    AuctioneerComponent,
+    BidderComponent,
+    UserInfoComponent,
+    UserMainComponent,
+    ProductListComponent,
+    ProductDetailComponent
 ]
 
 export {
-//    UserListComponent
+    AuctioneerComponent,
+    BidderComponent,
+    UserInfoComponent,
+    UserMainComponent,
+    ProductListComponent,
+    ProductDetailComponent
 }

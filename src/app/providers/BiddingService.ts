@@ -9,8 +9,68 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class BiddingService {
 
+    categoryList : string[];
+    timeSlots: number[];
+    userId : string;
     constructor(public af: AngularFire,private router: Router) {
         //this.users = this.af.database.object("/users")
+        this.categoryList = [
+            "Cell Phones",
+            "Computers",
+            "Tablets"
+        ]
+        this.timeSlots = [
+            2,3,4,5,6
+        ]
+    }
+
+
+    getCategoryList(){
+        return this.categoryList;
+    }
+
+    getTimeSlots(){
+        return this.timeSlots;
+    }
+
+    addProductForAuction (product,user){
+        product.userId = user.$key;
+        product.postedBy = user.firstName;
+        this.af.database.list("/products/").push(product);
+    }
+
+    getProductList(category:string){
+        return this.af.database.list("/products",{query: {
+                            orderByChild: 'category',
+                            equalTo: category
+        }});
+    }
+
+    getProduct(productId:string){
+        return this.af.database.object("/products/"+productId);
+    }
+
+    getProductBids(productId:string){
+        return this.af.database.list("/productBids/"+productId);
+    }
+
+    submitBid(productId,bidAmount,userId,userName){
+        this.af.database.list("/productBids/"+productId)
+        .push({
+            productId:productId,
+            userId:userId,
+            userName:userName,
+            bidAmount:bidAmount,
+            bidDatetime: (new Date()).getTime()
+        })
+    }
+
+    setUserId(userId){
+        this.userId = userId;
+    }
+
+    getUserId(){
+        return this.userId;
     }
    
 }

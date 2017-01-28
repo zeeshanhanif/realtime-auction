@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable} from 'rxjs';
 import {AuthService} from '../../providers';
 import { Router } from '@angular/router';
-
+import { NgRedux, select } from 'ng2-redux';
 
 @Component({
   selector: 'app-user',
@@ -14,8 +14,19 @@ import { Router } from '@angular/router';
 export class UserContainer implements OnInit {
 
   myForm: FormGroup;
+  @select(['auth','user']) user$ :Observable<any>;
+  @select(['auth', 'isLoggedin']) isLoggedin$: Observable<boolean>;
   constructor(private router: Router, private fb: FormBuilder,
   private authService: AuthService) {
+
+      this.user$.subscribe(user=>{
+
+        if(user){
+          if(!user || !user.$key){
+            this.router.navigate(['signin'])
+          }
+        }
+      })
     
   }
 

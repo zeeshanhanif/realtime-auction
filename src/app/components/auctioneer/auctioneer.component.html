@@ -1,0 +1,56 @@
+<md-card color="primary" class="card-margin" >        
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value);">
+    <md-card-header>
+      <md-card-title><h3>Product Detail</h3></md-card-title>        
+    </md-card-header>
+    <md-card-content>
+        <md-input-container class="signup-input" >
+          <input md-input id="productName" placeholder="Product Name" type="text" [formControl]="myForm.controls['productName']" >
+          <md-hint *ngIf="myForm.controls['productName'].touched && myForm.controls['productName'].hasError('required')" 
+                      [ngStyle]="{'color': 'red'}" align="start">Required</md-hint>
+        </md-input-container>
+
+        <md-input-container class="signup-input" >
+          <input md-input id="productDescription" placeholder="Product Description" type="text" [formControl]="myForm.controls['productDescription']" >
+          <md-hint *ngIf="myForm.controls['productDescription'].touched && myForm.controls['productDescription'].hasError('required')" 
+                      [ngStyle]="{'color': 'red'}" align="start">Required</md-hint>
+        </md-input-container>
+
+
+        <md-input-container class="signup-input" >
+          <input md-input id="auctionEndDate" placeholder="Auction End Date" type="date" [formControl]="myForm.controls['auctionEndDate']" >
+          <md-hint *ngIf="myForm.controls['auctionEndDate'].touched && myForm.controls['auctionEndDate'].hasError('required')" 
+                      [ngStyle]="{'color': 'red'}" align="start">Required</md-hint>
+        </md-input-container>
+
+        <md-input-container class="signup-input" >
+          <input md-input id="auctionEndTime" placeholder="Product Description" type="time" [formControl]="myForm.controls['auctionEndTime']" >
+          <md-hint *ngIf="myForm.controls['auctionEndTime'].touched && myForm.controls['auctionEndTime'].hasError('required')" 
+                      [ngStyle]="{'color': 'red'}" align="start">Required</md-hint>
+        </md-input-container>
+
+        <span >
+          <b>Select Category:</b>
+          <md-select class="accent" placeholder="Category" id="category" name="hours" [formControl]="myForm.controls['category']" >
+            <md-option [value]="category" *ngFor="let category of getCategoryList()">
+            {{category}}
+            </md-option>
+          </md-select>
+        </span>
+
+        <md-input-container class="signup-input" >
+          <input md-input id="startBiddingAmount" placeholder="Start Bidding Amount" type="number" [formControl]="myForm.controls['startBiddingAmount']" >
+          <md-hint *ngIf="myForm.controls['startBiddingAmount'].touched && myForm.controls['startBiddingAmount'].hasError('required')" 
+                      [ngStyle]="{'color': 'red'}" align="start">Required</md-hint>
+        </md-input-container>
+
+        
+        <div *ngIf="isError" [ngStyle]="{'color': 'red'}" align="start">
+            {{errorMessage}}
+        </div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button color="primary">Start Auction</button>
+    </md-card-actions>
+</form>
+</md-card>

@@ -1,0 +1,15 @@
+<div *ngFor="let product of (products | async)">
+<md-card color="primary" class="card-margin" *ngIf="product.userId!=userId"  >        
+  <md-list>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Product Name: </b>{{product.productName}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Bidding Start Amount: </b>{{product.startBiddingAmount}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <button md-raised-button color="accent"  [routerLink]="['../../product-detail',product.$key]" class="app-button">View</button>
+      </md-list-item>
+  </md-list>
+</md-card>
+</div>

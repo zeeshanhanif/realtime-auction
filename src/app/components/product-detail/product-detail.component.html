@@ -1,0 +1,54 @@
+<md-card color="primary" class="card-margin" *ngIf="product" >        
+  <md-list>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Product Name: </b>{{product.productName}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Posted By: </b>{{product.postedBy}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Product Description: </b>{{product.productDescription}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Product Category: </b>{{product.category}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Auction End Date: </b>{{product.auctionEndDate}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Auction End Time: </b>{{product.auctionEndTime}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Bidding Start Amount: </b>{{product.startBiddingAmount}}</h2>
+      </md-list-item>
+  </md-list>
+</md-card>
+
+<h3>User Bids</h3>
+<md-card color="primary" class="card-margin" *ngFor="let bid of (productBids | async)" >        
+  <md-list>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>User Name: </b>{{bid.userName}}</h2>
+      </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Bid Amount: </b>{{bid.bidAmount}}</h2>
+      </md-list-item>
+      <!--
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Bid Date Time: </b>{{bid.dateTime}}</h2>
+      </md-list-item>
+      -->
+  </md-list>
+</md-card>
+<md-card color="primary" class="card-margin" >
+  <md-list>
+      <md-input-container class="signup-input" >
+          <input md-input id="myBid" placeholder="Bid Amount" type="number" [(ngModel)]="myBidAmount">
+      </md-input-container>
+    <md-card-actions>
+      <button md-raised-button color="primary" (click)="submitBid()">Submit</button>
+    </md-card-actions>
+  </md-list>
+</md-card>
+
+

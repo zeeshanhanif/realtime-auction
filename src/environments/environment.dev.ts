@@ -1,10 +1,10 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyDpp0hVAEvXbjFE7ul9N0Y1J0CgDhNa9fk",
-    authDomain: "parking-booking-system.firebaseapp.com",
-    databaseURL: "https://parking-booking-system.firebaseio.com",
-    storageBucket: "parking-booking-system.appspot.com",
-    messagingSenderId: "366624095308"
+    apiKey: "AIzaSyA1iM4RPl_qpuOfdgZrm5TOmqFa8P2950o",
+    authDomain: "realtime-auction-f8c17.firebaseapp.com",
+    databaseURL: "https://realtime-auction-f8c17.firebaseio.com",
+    storageBucket: "realtime-auction-f8c17.appspot.com",
+    messagingSenderId: "499113387280"
   }
 };
