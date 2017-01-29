@@ -27,6 +27,12 @@ export class UserContainer implements OnInit {
           }
         }
       })
+
+      this.isLoggedin$.subscribe(val=>{
+          if(!val){
+            this.router.navigate(['signin']);
+          }
+        })
     
   }
 

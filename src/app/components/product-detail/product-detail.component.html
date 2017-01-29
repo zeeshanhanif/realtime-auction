@@ -1,4 +1,7 @@
-<md-card color="primary" class="card-margin" *ngIf="product" >        
+<md-card color="primary" class="card-margin" *ngIf="product" >  
+  <md-card-header>
+      <md-card-title><h2>Product Details</h2></md-card-title>        
+    </md-card-header>      
   <md-list>
       <md-list-item>
         <h2 class="line-margin" md-line><b>Product Name: </b>{{product.productName}}</h2>
@@ -21,17 +24,39 @@
       <md-list-item>
         <h2 class="line-margin" md-line><b>Bidding Start Amount: </b>{{product.startBiddingAmount}}</h2>
       </md-list-item>
+      <md-list-item>
+        <h2 class="line-margin" md-line><b>Bidding Time Still avaiable:</b> <span  [ngClass]="{biddingAvialable:checkBiddingAvailablility(product),biddingNotAvialable:!checkBiddingAvailablility(product)}">{{checkBiddingAvailablility(product)}}</span> </h2>
+      </md-list-item>
+      <md-list-item>
+        <span *ngIf="!checkBiddingAvailablility(product)" style="color:red;" ><b>Bidding Time Ended</b></span>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item>
+        <span *ngIf="awardedBidObj"  ><b>Awarded To:</b>{{awardedBidObj.awardedToUserName}}</span>
+      </md-list-item>
+      <md-list-item>
+        <span *ngIf="awardedBidObj"  ><b>Awarded Price:</b>{{awardedBidObj.awardedPrice}}</span>
+      </md-list-item>
+      
+
+
   </md-list>
 </md-card>
 
-<h3>User Bids</h3>
-<md-card color="primary" class="card-margin" *ngFor="let bid of (productBids | async)" >        
+<md-card color="primary" class="card-margin"  >   
+  <md-card-header>
+      <md-card-title><h3>User Bids</h3></md-card-title>        
+    </md-card-header>     
   <md-list>
+      <div *ngFor="let bid of (productBids | async)">
+        <md-divider></md-divider>
+        <md-list-item>
+          <h2 class="line-margin" md-line><b>User Name: </b>{{bid.userName}}</h2>
+          <h2 class="line-margin" md-line><b>Bid Amount: </b>{{bid.bidAmount}}</h2>
+        </md-list-item>
+      </div>
       <md-list-item>
-        <h2 class="line-margin" md-line><b>User Name: </b>{{bid.userName}}</h2>
-      </md-list-item>
-      <md-list-item>
-        <h2 class="line-margin" md-line><b>Bid Amount: </b>{{bid.bidAmount}}</h2>
+        
       </md-list-item>
       <!--
       <md-list-item>
@@ -40,10 +65,10 @@
       -->
   </md-list>
 </md-card>
-<md-card color="primary" class="card-margin" >
+<md-card color="primary" class="card-margin" *ngIf="product && checkBiddingAvailablility(product)">
   <md-list>
       <md-input-container class="signup-input" >
-          <input md-input id="myBid" placeholder="Bid Amount" type="number" [(ngModel)]="myBidAmount">
+          <input md-input id="myBid" placeholder="Submit your Bid" type="number" [(ngModel)]="myBidAmount">
       </md-input-container>
     <md-card-actions>
       <button md-raised-button color="primary" (click)="submitBid()">Submit</button>

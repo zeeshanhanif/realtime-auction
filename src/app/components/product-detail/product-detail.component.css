@@ -2,3 +2,14 @@
     width: 900px;
     margin: 5px;
 }
+
+.biddingNotAvialable{
+    background-color: red;
+    width: 20px;
+    height: 20px;
+}
+
+.biddingAvialable {
+    background-color: green;
+   
+}

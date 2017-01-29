@@ -36,7 +36,7 @@ export class BiddingService {
     addProductForAuction (product,user){
         product.userId = user.$key;
         product.postedBy = user.firstName;
-        this.af.database.list("/products/").push(product);
+        return this.af.database.list("/products/").push(product);
     }
 
     getProductList(category:string){
@@ -72,5 +72,26 @@ export class BiddingService {
     getUserId(){
         return this.userId;
     }
+
+    awardBid(product){
+        if(product && product.$key){
+            let key= product.$key;
+            product.productId = key;
+            delete product["$exists"];
+            delete product["$key"];
+            this.af.database.object("/awardedBids/"+key).subscribe(val=>{
+                if(!val.$exists()){
+                    this.af.database.object("/awardedBids/"+key).set(product);   
+                }
+            })
+        }
+    }
+
+    getAwardedByOfProduct(product){
+        if(product && product.$key)
+            return this.af.database.object("/awardedBids/"+product.$key);
+    }
+
+    
    
 }
