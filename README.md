@@ -1,14 +1,15 @@
-# Real Time Parking Booking System
+# Real Time Auction System
 Project Developed for Marathon #PakistanCodingMarathon - Leve 1
 
-#Firebase Hosted URL
-https://parking-booking-system.firebaseapp.com
+# Firebase Hosted URL
+https://realtime-auction-f8c17.firebaseapp.com/
 
-#Admin
-User: admin@gmail.com
+
+# User 1
+User: zeeshan@gmail.com
 pass: 123456
 
-#User
-User: zeeshan@gmail.com
+# User 2
+User: work2@gmail.com
 pass: 123456
 
